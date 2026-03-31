@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Cami Napal | Entrenadora Personal en Madrid</title>
+<meta name="description" content="Cami Napal, entrenadora personal en Madrid. Entrenamiento personalizado, online y presencial. Transforma tu cuerpo y tu vida con un método que funciona de verdad."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Belleza&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;background:#0a0a0a;color:#f5f0eb;overflow-x:hidden}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:#0a0a0a}
+::-webkit-scrollbar-thumb{background:#e8486a;border-radius:2px}
+
+/* NAVBAR */
+#navbar{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 48px;transition:all .4s ease;background:transparent}
+#navbar.scrolled{background:rgba(10,10,10,.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(232,72,106,.18);padding-top:13px;padding-bottom:13px}
+.nav-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+.hamburger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:6px;padding:4px;justify-self:start}
+.hamburger span{display:block;height:1.5px;background:#f5f0eb;transition:all .3s;width:24px}
+.hamburger span:nth-child(2){width:16px}
+.nav-logo{justify-self:center}
+.nav-logo img{height:56px;width:auto;display:block}
+.nav-right{justify-self:end}
+
+/* DRAWER */
+#overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:199;opacity:0;pointer-events:none;transition:opacity .3s}
+#overlay.show{opacity:1;pointer-events:all}
+#nav-drawer{position:fixed;top:0;left:0;bottom:0;width:300px;max-width:85vw;background:#0f0508;border-right:1px solid rgba(232,72,106,.2);z-index:200;transform:translateX(-100%);transition:transform .38s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;padding:32px 36px 40px}
+#nav-drawer.open{transform:translateX(0)}
+.drawer-close{align-self:flex-end;background:none;border:none;color:rgba(245,240,235,.5);font-size:24px;cursor:pointer;margin-bottom:36px;transition:color .2s;line-height:1}
+.drawer-close:hover{color:#e8486a}
+.drawer-logo img{height:44px;width:auto;margin-bottom:44px}
+.drawer-links{list-style:none;display:flex;flex-direction:column;gap:4px;flex:1}
+.drawer-links a{font-family:'Lato',sans-serif;font-size:14px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,240,235,.6);text-decoration:none;padding:13px 0;border-bottom:1px solid rgba(245,240,235,.05);transition:color .25s;display:block}
+.drawer-links a:hover{color:#e8486a}
+.drawer-cta{margin-top:32px}
+
+/* BUTTONS */
+.btn-primary{background:#e8486a;color:#fff;padding:16px 40px;font-family:'Lato',sans-serif;font-weight:700;font-size:15px;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:all .3s;position:relative;overflow:hidden;display:inline-block;text-decoration:none;white-space:nowrap}
+.btn-primary::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);transition:left .45s}
+.btn-primary:hover::after{left:100%}
+.btn-primary:hover{background:#c73358;transform:translateY(-2px);box-shadow:0 14px 40px rgba(232,72,106,.32)}
+.btn-outline{border:1.5px solid rgba(245,240,235,.35);color:#f5f0eb;padding:15px 39px;font-family:'Lato',sans-serif;font-weight:700;font-size:15px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .3s;background:transparent;display:inline-block;text-decoration:none;white-space:nowrap}
+.btn-outline:hover{border-color:#e8486a;color:#e8486a;transform:translateY(-2px)}
+
+/* HERO */
+.hero-section{min-height:100vh;display:flex;align-items:center;background:linear-gradient(135deg,#0a0a0a 0%,#170a10 55%,#0a0a0a 100%);position:relative;overflow:hidden;padding-top:100px}
+.hero-glow-1{position:absolute;top:-20%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(232,72,106,.12) 0%,transparent 70%);pointer-events:none}
+.hero-glow-2{position:absolute;bottom:-15%;left:-5%;width:400px;height:400px;background:radial-gradient(circle,rgba(232,72,106,.07) 0%,transparent 70%);pointer-events:none}
+.grid-lines{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(232,72,106,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(232,72,106,.03) 1px,transparent 1px);background-size:80px 80px}
+.hero-inner{max-width:1200px;margin:0 auto;padding:60px 48px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:2}
+.eyebrow{margin-bottom:28px}
+.eyebrow span{font-family:'Lato',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:rgba(232,72,106,.8)}
+h1.hero-title{font-family:'Belleza',sans-serif;font-size:clamp(46px,5.5vw,76px);line-height:1.06;color:#f5f0eb;margin-bottom:26px}
+h1.hero-title .rose{color:#e8486a}
+.hero-sub{font-family:'Lato',sans-serif;font-size:18px;line-height:1.75;color:rgba(245,240,235,.6);max-width:440px;margin-bottom:40px}
+.hero-sub strong{color:rgba(245,240,235,.88);font-weight:700}
+.hero-ctas{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:52px}
+.hero-stats{display:flex;align-items:center;gap:28px}
+.stat-divider{width:1px;height:40px;background:rgba(245,240,235,.1)}
+.stat-num{font-family:'Belleza',sans-serif;font-size:36px;color:#e8486a}
+.stat-label{font-family:'Lato',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,240,235,.35);margin-top:2px}
+.hero-photo{position:relative}
+.hero-photo img{width:100%;height:540px;object-fit:cover;object-position:center top;display:block}
+.floating-badge{position:absolute;bottom:-20px;left:-20px;background:#0a0a0a;border:1px solid rgba(232,72,106,.3);padding:20px 24px;max-width:190px;animation:float 4s ease-in-out infinite}
+.badge-label{font-family:'Lato',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(245,240,235,.35);margin-bottom:6px}
+.badge-text{font-family:'Belleza',sans-serif;font-size:17px;color:#f5f0eb;line-height:1.35}
+.badge-accent{width:28px;height:1px;background:#e8486a;margin-top:10px}
+.deco-c1{position:absolute;top:-24px;right:-24px;width:100px;height:100px;border-radius:50%;border:1px solid rgba(232,72,106,.18)}
+.deco-c2{position:absolute;top:-12px;right:-12px;width:52px;height:52px;border-radius:50%;border:1px solid rgba(232,72,106,.1)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+/* KETTLEBELL SCROLL */
+.kb-scroll{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;z-index:2}
+.kb-icon{width:34px;height:46px;animation:kbBounce 2.2s ease-in-out infinite;filter:drop-shadow(0 4px 14px rgba(232,72,106,.4))}
+.kb-label{font-family:'Lato',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(245,240,235,.22)}
+@keyframes kbBounce{
+  0%{transform:translateY(0) rotate(0deg)}
+  22%{transform:translateY(-16px) rotate(-9deg)}
+  42%{transform:translateY(0) rotate(0deg)}
+  57%{transform:translateY(-7px) rotate(6deg)}
+  70%{transform:translateY(0) rotate(0deg)}
+  100%{transform:translateY(0) rotate(0deg)}
+}
+.kb-scroll.hidden{opacity:0;transition:opacity .5s;pointer-events:none}
+
+/* SHARED */
+.section-wrap{max-width:1200px;margin:0 auto;padding:0 48px}
+.section-tag{font-family:'Lato',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:rgba(232,72,106,.78);display:block;margin-bottom:14px}
+.section-title{font-family:'Belleza',sans-serif;font-size:clamp(36px,4.2vw,58px);color:#f5f0eb;line-height:1.1}
+.section-title .rose{color:#e8486a}
+
+/* SOBRE MI */
+#sobre-mi{padding:120px 0}
+.sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.sobre-img{position:relative}
+.sobre-img img{width:100%;height:520px;object-fit:cover;object-position:center top;display:block}
+.sobre-img-frame{position:absolute;bottom:-16px;right:-16px;width:100%;height:100%;border:1px solid rgba(232,72,106,.14);pointer-events:none}
+.sobre-text{margin-top:28px}
+.sobre-text p{font-family:'Lato',sans-serif;font-size:17px;line-height:1.8;color:rgba(245,240,235,.65);margin-bottom:18px}
+.sobre-text p strong{color:rgba(245,240,235,.88);font-weight:700}
+.info-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:36px}
+.info-card{border:1px solid rgba(245,240,235,.07);padding:18px 20px}
+.info-card .icon{font-size:20px;margin-bottom:8px}
+.info-card .lbl{font-family:'Lato',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,240,235,.35);margin-bottom:4px}
+.info-card .val{font-family:'Lato',sans-serif;font-size:15px;color:rgba(245,240,235,.82);line-height:1.4}
+.ig-cta{display:inline-flex;align-items:center;gap:10px;margin-top:28px;font-family:'Lato',sans-serif;font-size:15px;color:rgba(245,240,235,.45);text-decoration:none;transition:all .3s}
+.ig-cta:hover{color:#e8486a;transform:translateX(4px)}
+.ig-cta svg{width:18px;height:18px;fill:currentColor;flex-shrink:0}
+
+/* SERVICIOS */
+#servicios{padding:120px 0;background:linear-gradient(180deg,#0a0a0a 0%,#0f0508 50%,#0a0a0a 100%)}
+.servicios-header{text-align:center;margin-bottom:72px}
+.servicios-header p{font-family:'Lato',sans-serif;font-size:17px;color:rgba(245,240,235,.5);max-width:500px;margin:20px auto 0;line-height:1.7}
+.servicios-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.service-card{border:1px solid rgba(245,240,235,.07);background:rgba(255,255,255,.015);padding:36px;position:relative;overflow:hidden;transition:all .4s ease}
+.service-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:#e8486a;transition:height .4s ease}
+.service-card:hover{border-color:rgba(232,72,106,.28);background:rgba(232,72,106,.04);transform:translateY(-5px)}
+.service-card:hover::before{height:100%}
+.service-card.featured{border-color:rgba(232,72,106,.28);background:rgba(232,72,106,.05)}
+.service-card.featured::before{height:100%}
+.popular-tag{position:absolute;top:16px;right:16px;background:#e8486a;color:white;font-family:'Lato',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 12px}
+.icon-ring{width:52px;height:52px;border-radius:50%;border:1px solid rgba(232,72,106,.3);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:24px;transition:all .3s}
+.service-card:hover .icon-ring,.service-card.featured .icon-ring{background:rgba(232,72,106,.12);border-color:#e8486a}
+.service-card h3{font-family:'Belleza',sans-serif;font-size:26px;color:#f5f0eb;margin-bottom:14px}
+.service-card h3 span{color:#e8486a;display:block}
+.service-card > p{font-family:'Lato',sans-serif;font-size:16px;color:rgba(245,240,235,.55);line-height:1.75;margin-bottom:24px}
+.service-list{list-style:none;margin-bottom:32px}
+.service-list li{font-family:'Lato',sans-serif;font-size:15px;color:rgba(245,240,235,.6);padding:6px 0;display:flex;align-items:flex-start;gap:12px;line-height:1.5}
+.service-list li::before{content:'';width:6px;height:6px;border-radius:50%;background:#e8486a;flex-shrink:0;margin-top:7px}
+.servicios-footer{text-align:center;margin-top:52px}
+.servicios-footer p{font-family:'Lato',sans-serif;font-size:16px;color:rgba(245,240,235,.3)}
+.servicios-footer a{color:#e8486a;text-decoration:underline;text-underline-offset:4px;transition:color .3s}
+
+/* TESTIMONIOS / ANTES-DESPUES */
+#testimonios{padding:120px 0}
+.ba-header{margin-bottom:64px}
+.ba-header p{font-family:'Lato',sans-serif;font-size:17px;color:rgba(245,240,235,.5);max-width:480px;margin-top:16px;line-height:1.75}
+.ba-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-bottom:64px}
+.ba-card{border:1px solid rgba(245,240,235,.07);background:rgba(255,255,255,.015);overflow:hidden;transition:all .4s ease}
+.ba-card:hover{border-color:rgba(232,72,106,.3);transform:translateY(-5px);box-shadow:0 24px 56px rgba(0,0,0,.45)}
+.ba-images{position:relative;width:100%;aspect-ratio:1/1;overflow:hidden;display:grid;grid-template-columns:1fr 1fr}
+.ba-images img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.ba-images::after{content:'';position:absolute;top:0;left:50%;width:2px;height:100%;background:rgba(232,72,106,.85);box-shadow:0 0 8px rgba(232,72,106,.5)}
+.ba-labels{position:absolute;bottom:0;left:0;right:0;display:flex;pointer-events:none}
+.ba-label{flex:1;text-align:center;padding:7px 0;font-family:'Lato',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.ba-label.before{background:rgba(10,10,10,.75);color:rgba(245,240,235,.6)}
+.ba-label.after{background:rgba(232,72,106,.85);color:white}
+.ba-body{padding:24px 26px}
+.ba-stars{color:#e8486a;font-size:16px;margin-bottom:10px;letter-spacing:1px}
+.ba-name{font-family:'Belleza',sans-serif;font-size:20px;color:#f5f0eb;margin-bottom:8px}
+.ba-quote{font-family:'Lato',sans-serif;font-size:15px;color:rgba(245,240,235,.62);line-height:1.7;margin-bottom:14px}
+.ba-quote strong{color:rgba(245,240,235,.9)}
+.ba-meta{font-family:'Lato',sans-serif;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(232,72,106,.7)}
+.results-bar{border:1px solid rgba(245,240,235,.07);padding:52px;display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center}
+.result-num{font-family:'Belleza',sans-serif;font-size:52px;color:#e8486a}
+.result-label{font-family:'Lato',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,240,235,.35);margin-top:6px}
+
+/* BENEFICIOS */
+#beneficios{padding:120px 0;background:linear-gradient(180deg,#0a0a0a 0%,#0f0508 50%,#0a0a0a 100%)}
+.beneficios-header{text-align:center;margin-bottom:72px}
+.bene-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.bene-item{display:flex;gap:22px;padding:28px;border:1px solid rgba(245,240,235,.06);transition:all .3s}
+.bene-item:hover{border-color:rgba(232,72,106,.2);background:rgba(232,72,106,.03)}
+.bene-icon{font-size:28px;flex-shrink:0;margin-top:2px;transition:transform .3s}
+.bene-item:hover .bene-icon{transform:scale(1.15)}
+.bene-item h4{font-family:'Belleza',sans-serif;font-size:22px;color:#f5f0eb;margin-bottom:8px}
+.bene-item p{font-family:'Lato',sans-serif;font-size:16px;color:rgba(245,240,235,.55);line-height:1.75}
+
+/* CTA */
+#contacto{padding:140px 0;text-align:center;background:linear-gradient(135deg,#170a10 0%,#0a0a0a 100%);position:relative;overflow:hidden}
+#contacto::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;background:radial-gradient(circle,rgba(232,72,106,.1) 0%,transparent 70%);pointer-events:none}
+#contacto .section-title{font-size:clamp(44px,5.5vw,72px);margin-bottom:28px}
+.cta-sub{font-family:'Lato',sans-serif;font-size:18px;color:rgba(245,240,235,.55);max-width:520px;margin:0 auto 48px;line-height:1.75}
+.cta-sub strong{color:rgba(245,240,235,.82);font-weight:700}
+.cta-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:60px}
+.ig-box{border:1px solid rgba(245,240,235,.1);padding:28px 32px;display:inline-flex;flex-direction:column;align-items:center;gap:18px;max-width:280px;position:relative;z-index:2}
+.ig-avatar{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#e8486a,#c73358);display:flex;align-items:center;justify-content:center}
+.ig-avatar svg{width:26px;height:26px;fill:white}
+.ig-handle{font-family:'Lato',sans-serif;font-size:15px;font-weight:700;color:rgba(245,240,235,.8)}
+
+/* FOOTER */
+footer{background:#0e0e0e;border-top:1px solid rgba(245,240,235,.05);padding:64px 0 32px}
+.footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-brand p{font-family:'Lato',sans-serif;font-size:14px;color:rgba(245,240,235,.32);line-height:1.75;max-width:240px;margin-top:16px}
+.footer-brand img{height:42px;width:auto}
+.footer-col h5{font-family:'Lato',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(245,240,235,.32);margin-bottom:20px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+.footer-col a,.footer-col span{font-family:'Lato',sans-serif;font-size:15px;color:rgba(245,240,235,.42);text-decoration:none;transition:color .3s;display:inline-flex;align-items:center;gap:8px}
+.footer-col a:hover{color:#e8486a}
+.footer-col svg{width:16px;height:16px;fill:currentColor;flex-shrink:0}
+.footer-bottom{border-top:1px solid rgba(245,240,235,.05);padding-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-bottom p{font-family:'Lato',sans-serif;font-size:13px;color:rgba(245,240,235,.2)}
+.footer-bottom a{color:rgba(245,240,235,.38);text-decoration:none;transition:color .3s}
+.footer-bottom a:hover{color:#e8486a}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-l{opacity:0;transform:translateX(-28px);transition:opacity .7s ease,transform .7s ease}
+.reveal-l.visible{opacity:1;transform:translateX(0)}
+.reveal-r{opacity:0;transform:translateX(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal-r.visible{opacity:1;transform:translateX(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.ha1{animation:fadeUp .9s ease .1s both}
+.ha2{animation:fadeUp .9s ease .3s both}
+.ha3{animation:fadeUp .9s ease .5s both}
+.ha4{animation:fadeUp .9s ease .7s both}
+.ha5{animation:fadeIn 1s ease .9s both}
+.ha6{animation:fadeUp .9s ease .35s both}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  #navbar{padding:16px 24px}
+  .nav-logo img{height:46px}
+  .hero-inner{grid-template-columns:1fr;gap:48px;padding:40px 24px}
+  .hero-photo{display:none}
+  .sobre-grid{grid-template-columns:1fr;gap:48px}
+  .sobre-img{display:none}
+  .servicios-grid{grid-template-columns:1fr}
+  .ba-grid{grid-template-columns:1fr}
+  .bene-grid{grid-template-columns:1fr}
+  .results-bar{grid-template-columns:repeat(2,1fr);padding:36px 24px}
+  .footer-grid{grid-template-columns:1fr;gap:36px}
+  .section-wrap{padding:0 24px}
+}
+</style>
+</head>
+<body>
+
+<!-- OVERLAY -->
+<div id="overlay" onclick="closeDrawer()"></div>
+
+<!-- DRAWER -->
+<div id="nav-drawer">
+  <button class="drawer-close" onclick="closeDrawer()">&#x2715;</button>
+  <div class="drawer-logo">
+    <!-- img/logo-blanco.webp -->
+    <img src="img/logo-blanco.webp" alt="Cami Napal"/>
+  </div>
+  <ul class="drawer-links">
+    <li><a href="#sobre-mi"    onclick="closeDrawer()">Sobre m&#237;</a></li>
+    <li><a href="#servicios"   onclick="closeDrawer()">Servicios</a></li>
+    <li><a href="#testimonios" onclick="closeDrawer()">Casos de &#233;xito</a></li>
+    <li><a href="#beneficios"  onclick="closeDrawer()">Por qu&#233; yo</a></li>
+    <li><a href="#contacto"    onclick="closeDrawer()">Contacto</a></li>
+  </ul>
+  <div class="drawer-cta">
+    <a href="#contacto" onclick="closeDrawer()" class="btn-primary" style="width:100%;text-align:center;display:block;padding:15px">
+      Empieza hoy
+    </a>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <button class="hamburger" onclick="openDrawer()" aria-label="Abrir men&#250;">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="#" class="nav-logo">
+      <!-- img/logo-blanco.webp -->
+      <img src="img/logo-blanco.webp" alt="Cami Napal Entrenadora Personal"/>
+    </a>
+    <div class="nav-right"></div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero-section">
+  <div class="hero-glow-1"></div>
+  <div class="hero-glow-2"></div>
+  <div class="grid-lines"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow ha1"><span>Entrenadora Personal en Madrid</span></div>
+      <h1 class="hero-title ha2">Tu mejor<br>versi&#243;n<br><span class="rose">empieza aqu&#237;.</span></h1>
+      <p class="hero-sub ha3">
+        Nada de dietas imposibles ni entrenamientos que odias.
+        Solo un m&#233;todo que funciona, <strong>dise&#241;ado para ti</strong>,
+        con resultados que duran.
+      </p>
+      <div class="hero-ctas ha4">
+        <a href="#contacto" class="btn-primary">Reserva tu sesi&#243;n gratuita</a>
+        <a href="#servicios" class="btn-outline">Ver servicios</a>
+      </div>
+      <div class="hero-stats ha5">
+        <div><div class="stat-num">+150</div><div class="stat-label">Clientas</div></div>
+        <div class="stat-divider"></div>
+        <div><div class="stat-num">5+</div><div class="stat-label">A&#241;os exp.</div></div>
+        <div class="stat-divider"></div>
+        <div><div class="stat-num">100%</div><div class="stat-label">Personalizado</div></div>
+      </div>
+    </div>
+    <div class="hero-photo ha6">
+      <!-- img/hero.webp -->
+      <img src="img/hero.webp" alt="Cami Napal entrenadora personal Madrid"/>
+      <div class="floating-badge">
+        <div class="badge-label">M&#233;todo</div>
+        <div class="badge-text">Resultados sin sacrificar tu vida</div>
+        <div class="badge-accent"></div>
+      </div>
+      <div class="deco-c1"></div><div class="deco-c2"></div>
+    </div>
+  </div>
+  <!-- Kettlebell scroll indicator -->
+  <div class="kb-scroll ha5" id="kb-scroll">
+    <svg class="kb-icon" viewBox="0 0 60 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M21 30 Q21 6 30 6 Q39 6 39 30" stroke="#e8486a" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+      <rect x="15" y="28" width="30" height="6" rx="3" fill="#e8486a" opacity="0.55"/>
+      <ellipse cx="30" cy="50" rx="19" ry="18" fill="#e8486a" opacity="0.18" stroke="#e8486a" stroke-width="2"/>
+      <ellipse cx="30" cy="50" rx="10" ry="9" fill="#e8486a" opacity="0.35"/>
+    </svg>
+    <span class="kb-label">Scroll</span>
+  </div>
+</section>
+
+<!-- SOBRE MI -->
+<section id="sobre-mi">
+  <div class="section-wrap">
+    <div class="sobre-grid">
+      <div class="sobre-img reveal-l">
+        <!-- img/sobre-mi.webp -->
+        <img src="img/sobre-mi.webp" alt="Cami Napal entrenadora"/>
+        <div class="sobre-img-frame"></div>
+      </div>
+      <div class="reveal-r">
+        <span class="section-tag">Sobre m&#237;</span>
+        <h2 class="section-title" style="margin-bottom:32px">Hola, soy<br><span class="rose">Cami.</span></h2>
+        <div class="sobre-text">
+          <p>Llevo a&#241;os apasionada por el movimiento, el cuerpo humano y, sobre todo,
+            por <strong>ayudar a otras mujeres a descubrir su fuerza</strong>. No la de
+            los n&#250;meros en una b&#225;scula, sino esa fuerza que sientes cuando te miras
+            al espejo y piensas: <em>&#8220;Wow, esto lo he conseguido yo.&#8221;</em></p>
+          <p>Empec&#233; en el mundo del fitness harta de los m&#233;todos extremos que
+            prometan todo y daban poco. Desarroll&#233; mi propio enfoque:
+            <strong>entrenamiento inteligente, h&#225;bitos reales y disfrute del proceso</strong>.</p>
+          <p>No creo en el sufrimiento como sin&#243;nimo de resultados. Creo en los
+            entrenamientos que te hacen sentir poderosa, en la nutrici&#243;n sin culpa
+            y en un estilo de vida que puedas mantener para siempre.</p>
+        </div>
+        <div class="info-cards">
+          <div class="info-card">
+            <div class="icon">&#127891;</div>
+            <div class="lbl">Titulaci&#243;n</div>
+            <div class="val">T&#233;cnico Superior Actividad F&#237;sica</div>
+          </div>
+          <div class="info-card">
+            <div class="icon">&#128170;</div>
+            <div class="lbl">Especializaci&#243;n</div>
+            <div class="val">Fuerza, Hipertrofia y Bienestar Femenino</div>
+          </div>
+          <div class="info-card">
+            <div class="icon">&#128205;</div>
+            <div class="lbl">Ubicaci&#243;n</div>
+            <div class="val">Madrid y Online en toda Espa&#241;a</div>
+          </div>
+          <div class="info-card">
+            <div class="icon">&#11088;</div>
+            <div class="lbl">Experiencia</div>
+            <div class="val">+5 a&#241;os, m&#225;s de 150 clientas transformadas</div>
+          </div>
+        </div>
+        <a href="https://www.instagram.com/cami.napal.coach/" target="_blank" rel="noopener" class="ig-cta">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @cami.napal.coach &#8594;
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="section-wrap">
+    <div class="servicios-header reveal">
+      <span class="section-tag">Lo que ofrezco</span>
+      <h2 class="section-title">Entrenamiento <span class="rose">a tu medida</span></h2>
+      <p>Cada persona es &#250;nica. Por eso cada plan es diferente. Escoge el formato que mejor encaje con tu vida.</p>
+    </div>
+    <div class="servicios-grid">
+      <div class="service-card reveal d1">
+        <div class="icon-ring">&#127947;</div>
+        <h3>Presencial<span>en Madrid</span></h3>
+        <p>Entrena conmigo en persona. Te corrijo, te motivo y no te dejo ni un segundo sola. Sesiones de 60 minutos dise&#241;adas para maximizar cada esfuerzo.</p>
+        <ul class="service-list">
+          <li>Seguimiento t&#233;cnico en tiempo real</li>
+          <li>Planificaci&#243;n personalizada</li>
+          <li>Acceso a instalaciones premium</li>
+        </ul>
+        <a href="#contacto" class="btn-outline" style="width:100%;text-align:center;display:block">Reservar sesi&#243;n</a>
+      </div>
+      <div class="service-card featured reveal d2">
+        <div class="popular-tag">Popular</div>
+        <div class="icon-ring">&#128241;</div>
+        <h3>Online<span>desde casa</span></h3>
+        <p>Entrena desde donde quieras. Te preparo tu plan semanal, hacemos videollamadas de seguimiento y siempre estoy disponible por mensajes.</p>
+        <ul class="service-list">
+          <li>Plan de entrenamiento semanal</li>
+          <li>Videollamadas de seguimiento</li>
+          <li>Chat directo disponible 24/7</li>
+          <li>Pauta nutricional incluida</li>
+        </ul>
+        <a href="#contacto" class="btn-primary" style="width:100%;text-align:center;display:block">Empezar online</a>
+      </div>
+      <div class="service-card reveal d3">
+        <div class="icon-ring">&#127919;</div>
+        <h3>Por<span>objetivos</span></h3>
+        <p>&#191;Quieres perder grasa, ganar m&#250;sculo, recuperarte o simplemente sentirte bien? Hay un plan exacto para ti.</p>
+        <ul class="service-list">
+          <li>P&#233;rdida de grasa con disfrute</li>
+          <li>Fuerza e hipertrofia</li>
+          <li>Salud hormonal y bienestar</li>
+        </ul>
+        <a href="#contacto" class="btn-outline" style="width:100%;text-align:center;display:block">Hablar con Cami</a>
+      </div>
+    </div>
+    <div class="servicios-footer reveal">
+      <p>&#191;No sabes qu&#233; opci&#243;n elegir? <a href="#contacto">Escr&#237;beme y lo descubrimos juntas &#8594;</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section id="testimonios">
+  <div class="section-wrap">
+    <div class="ba-header reveal">
+      <span class="section-tag">Casos de &#233;xito</span>
+      <h2 class="section-title">Ellas ya<br><span class="rose">lo hicieron.</span></h2>
+      <p>Resultados reales, sin filtros. Solo trabajo, constancia y el m&#233;todo correcto.</p>
+    </div>
+    <div class="ba-grid">
+      <!-- Card 1 — img/antes-despues-1.webp (imagen cuadrada con antes a la izq, despues a la dcha) -->
+      <div class="ba-card reveal d1">
+        <div class="ba-images">
+          <img src="img/antes-1.webp" alt="Laura antes"/>
+          <img src="img/despues-1.webp" alt="Laura despu&#233;s"/>
+          <div class="ba-labels">
+            <div class="ba-label before">Antes</div>
+            <div class="ba-label after">Despu&#233;s</div>
+          </div>
+        </div>
+        <div class="ba-body">
+          <div class="ba-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div class="ba-name">Laura M.</div>
+          <p class="ba-quote">Llevaba a&#241;os intentando adelgazar con dietas sin sentido. Con Cami aprend&#237; a comer, a moverme y a disfrutar del proceso. En 4 meses <strong>perd&#237; 12 kg sin pasar hambre.</strong></p>
+          <div class="ba-meta">Madrid &#8212; 4 meses de entrenamiento</div>
+        </div>
+      </div>
+      <!-- Card 2 — img/antes-2.webp / despues-2.webp -->
+      <div class="ba-card reveal d2">
+        <div class="ba-images">
+          <img src="img/antes-2.webp" alt="Sara antes"/>
+          <img src="img/despues-2.webp" alt="Sara despu&#233;s"/>
+          <div class="ba-labels">
+            <div class="ba-label before">Antes</div>
+            <div class="ba-label after">Despu&#233;s</div>
+          </div>
+        </div>
+        <div class="ba-body">
+          <div class="ba-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div class="ba-name">Sara G.</div>
+          <p class="ba-quote">Empec&#233; el entrenamiento online con cero confianza. Ahora me siento <strong>m&#225;s fuerte que nunca</strong>, tanto por fuera como por dentro.</p>
+          <div class="ba-meta">Barcelona &#8212; 5 meses online</div>
+        </div>
+      </div>
+      <!-- Card 3 — img/antes-3.webp / despues-3.webp -->
+      <div class="ba-card reveal d3">
+        <div class="ba-images">
+          <img src="img/antes-3.webp" alt="Ana antes"/>
+          <img src="img/despues-3.webp" alt="Ana despu&#233;s"/>
+          <div class="ba-labels">
+            <div class="ba-label before">Antes</div>
+            <div class="ba-label after">Despu&#233;s</div>
+          </div>
+        </div>
+        <div class="ba-body">
+          <div class="ba-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div class="ba-name">Ana P.</div>
+          <p class="ba-quote">Despu&#233;s de dos embarazos pens&#233; que jam&#225;s recuperar&#237;a mi cuerpo. No solo lo recuper&#233;, sino que <strong>super&#233; mi mejor versi&#243;n de siempre.</strong></p>
+          <div class="ba-meta">Madrid &#8212; 6 meses presencial</div>
+        </div>
+      </div>
+    </div>
+    <div class="results-bar reveal">
+      <div><div class="result-num">+150</div><div class="result-label">Clientas</div></div>
+      <div><div class="result-num">96%</div><div class="result-label">Satisfacci&#243;n</div></div>
+      <div><div class="result-num">5+</div><div class="result-label">A&#241;os experiencia</div></div>
+      <div><div class="result-num">&#8734;</div><div class="result-label">Motivaci&#243;n</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFICIOS -->
+<section id="beneficios">
+  <div class="section-wrap">
+    <div class="beneficios-header reveal">
+      <span class="section-tag">Por qu&#233; Cami</span>
+      <h2 class="section-title">No soy una entrenadora<br><span class="rose">cualquiera.</span></h2>
+    </div>
+    <div class="bene-grid">
+      <div class="bene-item reveal d1">
+        <div class="bene-icon">&#129504;</div>
+        <div><h4>Ciencia, no moda</h4><p>Nada de tendencias virales. Cada decisi&#243;n de tu plan est&#225; basada en evidencia cient&#237;fica actualizada y en lo que realmente funciona a largo plazo.</p></div>
+      </div>
+      <div class="bene-item reveal d2">
+        <div class="bene-icon">&#10084;&#65039;</div>
+        <div><h4>Enfoque integral</h4><p>Trabajo tu cuerpo y tu mente. Gesti&#243;n del estr&#233;s, descanso, h&#225;bitos... porque la transformaci&#243;n real va mucho m&#225;s all&#225; del gimnasio.</p></div>
+      </div>
+      <div class="bene-item reveal d3">
+        <div class="bene-icon">&#128202;</div>
+        <div><h4>Seguimiento constante</h4><p>No eres un n&#250;mero. Te reviso, te ajusto y estoy disponible cuando me necesitas. Tu progreso es mi prioridad, no una venta m&#225;s.</p></div>
+      </div>
+      <div class="bene-item reveal d4">
+        <div class="bene-icon">&#127919;</div>
+        <div><h4>100% personalizado</h4><p>Tu plan no es una plantilla. Lo construyo desde cero teniendo en cuenta tu historial, tus horarios, tus gustos y tus objetivos reales.</p></div>
+      </div>
+      <div class="bene-item reveal d1">
+        <div class="bene-icon">&#128683;</div>
+        <div><h4>Sin dietas absurdas</h4><p>Aprender&#225;s a comer rico y bien. Sin contar cada calor&#237;a de forma obsesiva, sin eliminar grupos de alimentos, sin demonizar la pizza del viernes.</p></div>
+      </div>
+      <div class="bene-item reveal d2">
+        <div class="bene-icon">&#128293;</div>
+        <div><h4>Motivaci&#243;n real</h4><p>Soy directa, cercana y divertida. No te voy a mentir, pero s&#237; te voy a acompa&#241;ar en los momentos dif&#237;ciles con la misma energ&#237;a que en los buenos.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contacto">
+  <div class="section-wrap" style="position:relative;z-index:2">
+    <div class="reveal">
+      <span class="section-tag">Lista para empezar</span>
+      <h2 class="section-title">Tu cambio<br><span class="rose">empieza hoy.</span></h2>
+      <p class="cta-sub">La primera sesi&#243;n es <strong>gratuita y sin compromiso</strong>. Hablamos, te cuento c&#243;mo trabajo y vemos si somos un buen equipo.</p>
+      <div class="cta-buttons">
+        <a href="https://www.instagram.com/cami.napal.coach/" target="_blank" rel="noopener" class="btn-primary">Escr&#237;beme por Instagram</a>
+        <a href="mailto:hola@caminapal.com" class="btn-outline">Enviar email</a>
+      </div>
+      <div style="display:flex;justify-content:center">
+        <div class="ig-box">
+          <div class="ig-avatar"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+          <div class="ig-handle">@cami.napal.coach</div>
+          <a href="https://www.instagram.com/cami.napal.coach/" target="_blank" rel="noopener" class="btn-primary" style="font-size:13px;padding:13px 24px">Seguir en Instagram</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="section-wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <!-- img/logo-blanco.webp -->
+        <img src="img/logo-blanco.webp" alt="Cami Napal Entrenadora Personal"/>
+        <p>Entrenadora personal en Madrid. Transformaciones reales a trav&#233;s del entrenamiento inteligente y los h&#225;bitos sostenibles.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Navegaci&#243;n</h5>
+        <ul>
+          <li><a href="#sobre-mi">Sobre m&#237;</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#testimonios">Casos de &#233;xito</a></li>
+          <li><a href="#beneficios">Por qu&#233; yo</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contacto</h5>
+        <ul>
+          <li>
+            <a href="https://www.instagram.com/cami.napal.coach/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>@cami.napal.coach
+            </a>
+          </li>
+          <li><a href="mailto:hola@caminapal.com">hola@caminapal.com</a></li>
+          <li><span>Madrid, Espa&#241;a</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&#169; 2026 Cami Napal. Todos los derechos reservados.</p>
+      <p>Desarrollo con IA por <a href="https://nat2gostudio.com" target="_blank" rel="noopener">Nat2Go Studio</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Navbar scroll
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+}, {passive:true});
+
+// Kettlebell hide on scroll
+const kbEl = document.getElementById('kb-scroll');
+window.addEventListener('scroll', () => {
+  if (kbEl) kbEl.classList.toggle('hidden', window.scrollY > 80);
+}, {passive:true});
+
+// Drawer
+const drawer  = document.getElementById('nav-drawer');
+const overlay = document.getElementById('overlay');
+function openDrawer()  { drawer.classList.add('open');  overlay.classList.add('show');  document.body.style.overflow='hidden'; }
+function closeDrawer() { drawer.classList.remove('open'); overlay.classList.remove('show'); document.body.style.overflow=''; }
+
+// Scroll reveal
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal, .reveal-l, .reveal-r').forEach(el => io.observe(el));
+
+// Active nav highlight
+const secs = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  secs.forEach(s => { if (window.scrollY >= s.offsetTop - 130) cur = s.id; });
+  document.querySelectorAll('.drawer-links a').forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + cur ? '#e8486a' : '';
+  });
+}, {passive:true});
+</script>
+</body>
+</html>
